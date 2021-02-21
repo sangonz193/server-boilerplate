@@ -7,7 +7,7 @@ import { projectPath } from "../../_utils/projectPath";
 const command: CommandModule<{}, {}> = {
 	command: "uninstall-docker-db",
 
-	describe: "Uninstalls the database container from docker.",
+	describe: "Removes the database container from docker.",
 
 	handler: async () => {
 		const dbConfig = await yup
