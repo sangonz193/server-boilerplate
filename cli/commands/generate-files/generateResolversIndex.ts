@@ -15,42 +15,42 @@ import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"
 import { getFormattedCode } from "./_utils/getFormatCode";
 import { generatedFilesGlobs } from "./generatedFilesGlobs";
 
+type DefaultFieldResolverMetadata = {
+	type: "default-field-resolver";
+	name: string;
+	value: string;
+};
+
+type FieldResolverMetadata = {
+	type: "field-resolver";
+	filePath: string;
+	symbolName: string;
+	name: string;
+};
+
+type ObjectResolverMetadata = {
+	type: "object-resolver";
+	dirPath: string;
+	name: string;
+	fields: Array<FieldResolverMetadata | DefaultFieldResolverMetadata>;
+};
+
+type ScalarResolverMetadata = {
+	type: "scalar-resolver";
+	filePath: string;
+	symbolName: string;
+	name: string;
+};
+
+type UnionResolverMetadata = {
+	type: "union-resolver";
+	name: string;
+};
+
 export const generateResolversIndex = async (schema: GraphQLSchema) => {
 	const resolversFolderPath = path.resolve(generatedFilesGlobs.resolversIndex, "..");
 	const resolversFilePath = generatedFilesGlobs.resolversIndex;
 	const generatedTypesFilePath = path.resolve(projectPath, "src", "schemas", "index.types.ts");
-
-	type DefaultFieldResolverMetadata = {
-		type: "default-field-resolver";
-		name: string;
-		value: string;
-	};
-
-	type FieldResolverMetadata = {
-		type: "field-resolver";
-		filePath: string;
-		symbolName: string;
-		name: string;
-	};
-
-	type ObjectResolverMetadata = {
-		type: "object-resolver";
-		dirPath: string;
-		name: string;
-		fields: Array<FieldResolverMetadata | DefaultFieldResolverMetadata>;
-	};
-
-	type ScalarResolverMetadata = {
-		type: "scalar-resolver";
-		filePath: string;
-		symbolName: string;
-		name: string;
-	};
-
-	type UnionResolverMetadata = {
-		type: "union-resolver";
-		name: string;
-	};
 
 	const typeMap = schema.getTypeMap();
 
