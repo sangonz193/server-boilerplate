@@ -24,7 +24,7 @@ import { fs } from "../src/_utils/fs";
 		})
 	);
 
-	const _yargs = yargs.scriptName("");
+	const _yargs = yargs.scriptName("node cli");
 
 	commands.forEach((command) => _yargs.command(command));
 
