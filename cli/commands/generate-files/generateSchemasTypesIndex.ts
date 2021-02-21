@@ -8,6 +8,7 @@ import { fs } from "../../../src/_utils/fs";
 import { projectPath } from "../../_utils/projectPath";
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
 import { getFormattedCode } from "./_utils/getFormatCode";
+import { getImportPath } from "./_utils/getImportPath";
 import { getMatchingFilePaths } from "./_utils/getMatchingFilePaths";
 import { generatedFilesGlobs } from "./generatedFilesGlobs";
 
@@ -76,9 +77,13 @@ export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 				result.filename,
 				getFormattedCode(
 					generatedFileHeaderContent +
-						`import { OptionalUndefinedKeys, SafeOmit } from "${path.relative(
-							path.resolve(result.filename, ".."),
-							path.resolve(projectPath, "src", "_utils", "utilTypes")
+						`import { OptionalUndefinedKeys } from "${getImportPath(
+							result.filename,
+							path.resolve(projectPath, "src", "_utils", "OptionalUndefinedKeys.ts")
+						)}";\n` +
+						`import { SafeOmit } from "${getImportPath(
+							result.filename,
+							path.resolve(projectPath, "src", "_utils", "SafeOmit.ts")
 						)}";\n` +
 						result.content.replace(/\bResolvers\b/g, "_Resolvers") +
 						`\n` +
