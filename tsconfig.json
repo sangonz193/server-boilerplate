@@ -1,0 +1,38 @@
+{
+   "compilerOptions": {
+      "downlevelIteration": true,
+      "emitDecoratorMetadata": true,
+      "baseUrl": ".",
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "lib": [
+         "es5",
+         "es6"
+      ],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noEmit": true,
+      "rootDir": ".",
+      "skipLibCheck": true,
+      "sourceMap": true,
+      "strictNullChecks": true,
+      "strict": true,
+      "target": "es6",
+      "suppressImplicitAnyIndexErrors": false
+   },
+   "exclude": [
+      "dist",
+      "node_modules"
+   ],
+   "include": [
+      "./**/*.ts",
+      "./.**/*.ts",
+      "./**/*.js",
+      "./**/.*.js",
+      "./.**/*.js"
+   ]
+}
