@@ -1,7 +1,8 @@
-export type SafeOmit<T, K extends keyof T> = Omit<T, K>;
-
-export type SafeExtract<T, K extends T> = Extract<T, K>;
-
+/**
+ * Transforms required fields of T with undefined as a possible type into optional fields.
+ *
+ * For example, transforms `{field: string | undefined}` into `{field?: string}`
+ */
 export type OptionalUndefinedKeys<T> = Pick<
 	T,
 	{

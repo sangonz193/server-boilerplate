@@ -1,7 +1,7 @@
 import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 import * as yup from "yup";
 
-import { SafeOmit } from "../_utils/utilTypes";
+import { SafeOmit } from "../_utils/SafeOmit";
 import { entities } from "../entities";
 import { isProduction } from "./isProduction";
 

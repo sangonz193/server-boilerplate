@@ -5,7 +5,8 @@
 
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from "graphql";
 
-import { OptionalUndefinedKeys, SafeOmit } from "../_utils/utilTypes";
+import { OptionalUndefinedKeys } from "../_utils/OptionalUndefinedKeys";
+import { SafeOmit } from "../_utils/SafeOmit";
 import { Context } from "../Context";
 import { AuthenticationErrorParent } from "../resolvers/AuthenticationError/AuthenticationError.parent";
 import { GenericErrorParent } from "../resolvers/GenericError/GenericError.parent";

@@ -5,9 +5,9 @@ import { from as copyFrom } from "pg-copy-streams";
 import { createConnection, getRepository } from "typeorm";
 import { CommandModule } from "yargs";
 
-import { hashPassword } from "../../../src/_helpers/hashPassword";
 import { dangerousKeysOf } from "../../../src/_utils/dangerousKeysOf";
 import { _fs, fs } from "../../../src/_utils/fs";
+import { hashPassword } from "../../../src/_utils/hashPassword";
 import { getDbConnectionOptions } from "../../../src/config/getDbConnectionOptions";
 import { entities } from "../../../src/entities";
 import { getUserRepository } from "../../../src/repositories/User";

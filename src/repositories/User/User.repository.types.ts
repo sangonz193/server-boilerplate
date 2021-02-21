@@ -1,4 +1,4 @@
-import { SafeOmit } from "../../_utils/utilTypes";
+import { SafeOmit } from "../../_utils/SafeOmit";
 import { UserRow } from "../../entities/User/User.entity.types";
 
 export type UserFindOneOptions =

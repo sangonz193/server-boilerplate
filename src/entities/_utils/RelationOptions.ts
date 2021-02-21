@@ -1,6 +1,6 @@
 import { EntitySchemaRelationOptions, JoinColumnOptions } from "typeorm";
 
-import { SafeExtract } from "../../_utils/utilTypes";
+import { SafeExtract } from "../../_utils/SafeExtract";
 import { UnidirectionalRelation } from "./UnidirectionalRelation";
 
 export type RelationOptions<TRelation extends UnidirectionalRelation> = {
