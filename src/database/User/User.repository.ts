@@ -3,9 +3,9 @@ import { Connection } from "typeorm";
 
 import { getUuid } from "../../_utils/getUuid";
 import { hasProperty } from "../../_utils/hasProperty";
-import { getTypedRepository } from "../../entities/_utils/getTypedRepository";
-import { userColumns, userEntitySchema } from "../../entities/User";
-import { UserRow } from "../../entities/User/User.entity.types";
+import { getTypedRepository } from "../_utils/getTypedRepository";
+import { userColumns, userEntitySchema } from "./User.entity";
+import { UserRow } from "./User.entity.types";
 import { UserRepository } from "./User.repository.types";
 
 export const getUserRepository = (connection: Connection): UserRepository => {

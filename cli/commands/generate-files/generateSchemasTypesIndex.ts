@@ -14,14 +14,14 @@ import { generatedFilesGlobs } from "./generatedFilesGlobs";
 
 export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 	const typesFilePath = generatedFilesGlobs.schemasTypeIndex;
-	const parentFilesGlob = path.resolve(projectPath, "src", "resolvers", "**", "*.parent.ts");
+	const parentFilesGlob = path.resolve(projectPath, "src", "graphql", "**", "*.parent.ts");
 
 	const stringSchema = printSchema(schema);
 	const parentFilesPaths = (await getMatchingFilePaths(parentFilesGlob)).sort();
 
 	const parentFilesMetadata = parentFilesPaths.map((parentFilePath) => {
 		return {
-			importPath: path.relative(path.resolve(typesFilePath, ".."), parentFilePath.replace(/\.[^.]+$/, "")),
+			importPath: getImportPath(typesFilePath, parentFilePath.replace(/\.[^.]+$/, "")),
 			symbolName: path.basename(parentFilePath).replace(".parent.ts", "") + "Parent",
 		};
 	});

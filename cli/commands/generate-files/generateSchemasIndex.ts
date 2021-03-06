@@ -9,7 +9,7 @@ import { generatedFilesGlobs } from "./generatedFilesGlobs";
 
 export const generateSchemasIndex = async () => {
 	const typeDefsFilePath = generatedFilesGlobs.schemasIndex;
-	const schemaFilesGlob = path.resolve(projectPath, "src", "schemas", "**", "*.schema.ts");
+	const schemaFilesGlob = path.resolve(projectPath, "src", "graphql", "**", "*.schema.ts");
 
 	const files = (await getMatchingFilePaths(schemaFilesGlob)).sort();
 

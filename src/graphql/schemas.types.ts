@@ -8,10 +8,10 @@ import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from "
 import { OptionalUndefinedKeys } from "../_utils/OptionalUndefinedKeys";
 import { SafeOmit } from "../_utils/SafeOmit";
 import { Context } from "../Context";
-import { AuthenticationErrorParent } from "../resolvers/AuthenticationError/AuthenticationError.parent";
-import { GenericErrorParent } from "../resolvers/GenericError/GenericError.parent";
-import { NotFoundErrorParent } from "../resolvers/NotFoundError/NotFoundError.parent";
-import { UserParent } from "../resolvers/User/User.parent";
+import { AuthenticationErrorParent } from "./AuthenticationError/AuthenticationError.parent";
+import { GenericErrorParent } from "./GenericError/GenericError.parent";
+import { NotFoundErrorParent } from "./NotFoundError/NotFoundError.parent";
+import { UserParent } from "./User/User.parent";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };

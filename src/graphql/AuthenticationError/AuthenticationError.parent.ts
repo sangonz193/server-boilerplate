@@ -1,4 +1,4 @@
-import { AuthenticationError } from "../../schemas/index.types";
+import { AuthenticationError } from "../schemas.types";
 
 export type AuthenticationErrorParent = AuthenticationError;
 

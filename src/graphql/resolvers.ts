@@ -3,8 +3,7 @@
  * next time the file gets generated.
  */
 
-import { Resolvers } from "../schemas/index.types";
-import User_idResolver from "./User/id.resolver";
+import { Resolvers } from "./schemas.types";
 import VoidResolver from "./Void.resolver";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -30,8 +29,6 @@ export const resolvers: Resolvers = {
 	Query: {
 		_,
 	},
-	User: {
-		id: User_idResolver,
-	},
+	User: {},
 	Void: VoidResolver,
 };

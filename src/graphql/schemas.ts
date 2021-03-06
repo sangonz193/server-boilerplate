@@ -7,6 +7,6 @@ import { DocumentNode } from "graphql";
 
 import BaseDoc from "./Base.schema";
 import QueryDoc from "./Query/Query.schema";
-import UserDoc from "./User.schema";
+import UserDoc from "./User/User.schema";
 
 export const typeDefs: DocumentNode[] = [BaseDoc, QueryDoc, UserDoc];
