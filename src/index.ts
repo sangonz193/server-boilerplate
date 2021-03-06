@@ -11,6 +11,7 @@ import { ExpressContext } from "apollo-server-express/dist/ApolloServer";
 import cors from "cors";
 import express from "express";
 import { GraphQLFormattedError } from "graphql";
+import { createProxyMiddleware } from "http-proxy-middleware";
 import { createConnection } from "typeorm";
 
 import { appConfig } from "./appConfig";
@@ -38,6 +39,14 @@ import { typeDefs } from "./schemas";
 
 	const corsMiddleware = cors();
 	expressApp.use((...args) => corsMiddleware(...args));
+
+	expressApp.use(
+		"/auth",
+		createProxyMiddleware({
+			target: `http://localhost:${appConfig.keycloakPort}`,
+			prependPath: false,
+		})
+	);
 
 	const repositories = getRepositories(connection);
 
