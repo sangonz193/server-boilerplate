@@ -17,12 +17,15 @@ import { createConnection } from "typeorm";
 import { appConfig } from "./appConfig";
 import { Context } from "./Context";
 import { getDataLoaders } from "./dataloaders";
+import { getKeycloakClient } from "./getKeycloakClient";
 import { getRepositories } from "./repositories";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schemas";
 
 (async () => {
 	const connection = await createConnection(appConfig.dbConnectionOptions);
+
+	const keycloakAdminClient = await getKeycloakClient();
 
 	const { schema } = appConfig.dbConnectionOptions;
 	const schemaExists =
@@ -43,7 +46,7 @@ import { typeDefs } from "./schemas";
 	expressApp.use(
 		"/auth",
 		createProxyMiddleware({
-			target: `http://localhost:${appConfig.keycloakPort}`,
+			target: `http://localhost:${appConfig.keycloak.port}`,
 			prependPath: false,
 		})
 	);
@@ -57,6 +60,7 @@ import { typeDefs } from "./schemas";
 			res,
 			dataLoaders: getDataLoaders(repositories),
 			repositories,
+			keycloak: keycloakAdminClient,
 		};
 	};
 
