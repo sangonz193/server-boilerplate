@@ -9,6 +9,7 @@
 		"tsc": "npx tsc",
 		"lint:fix": "eslint . --fix",
 		"build": "node cli build",
+		"docker-compose": "docker-compose up -d",
 		"postinstall": "patch-package"
 	},
 	"repository": {
