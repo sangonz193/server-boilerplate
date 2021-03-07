@@ -3,6 +3,6 @@
  * next time the file gets generated.
  */
 
-import { userEntitySchema } from "./User/User.entity";
+import { userEntitySchema } from "./User/User.entity"
 
-export const entities = [userEntitySchema];
+export const entities = [userEntitySchema]

@@ -1,11 +1,11 @@
-import identity from "lodash/identity";
-import omitBy from "lodash/omitBy";
-import { Repository } from "typeorm";
+import identity from "lodash/identity"
+import omitBy from "lodash/omitBy"
+import { Repository } from "typeorm"
 
 export type UpdateEntity<TEntityRow extends { id: string | number }> = (
 	id: TEntityRow["id"],
 	newValues: Partial<TEntityRow>
-) => Promise<TEntityRow>;
+) => Promise<TEntityRow>
 
 export const createUpdate = <TEntityRow extends { id: string | number }>(
 	repo: Repository<TEntityRow>
@@ -16,7 +16,7 @@ export const createUpdate = <TEntityRow extends { id: string | number }>(
 			.update()
 			.set(
 				omitBy(newValues, (value) => {
-					return value === undefined;
+					return value === undefined
 				}) as any
 			)
 			.where(
@@ -24,8 +24,8 @@ export const createUpdate = <TEntityRow extends { id: string | number }>(
 				identity<{ id: TEntityRow["id"] }>({ id })
 			)
 			.returning("*")
-			.execute();
+			.execute()
 
-		return result.raw[0];
-	};
-};
+		return result.raw[0]
+	}
+}

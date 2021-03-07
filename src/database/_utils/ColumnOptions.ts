@@ -1,17 +1,17 @@
-import { EntitySchemaColumnOptions } from "typeorm";
+import { EntitySchemaColumnOptions } from "typeorm"
 
-import { SafeExtract } from "../../_utils/SafeExtract";
-import { Column, ColumnSqlTypeMap } from "./Column";
+import { SafeExtract } from "../../_utils/SafeExtract"
+import { Column, ColumnSqlTypeMap } from "./Column"
 
 export type ColumnOptions<TColumn extends Column<any>> = {
-	[K in SafeExtract<keyof EntitySchemaColumnOptions, "name">]: TColumn["name"];
+	[K in SafeExtract<keyof EntitySchemaColumnOptions, "name">]: TColumn["name"]
 } &
 	{
-		[K in SafeExtract<keyof EntitySchemaColumnOptions, "type">]: TColumn["sqlType"];
+		[K in SafeExtract<keyof EntitySchemaColumnOptions, "type">]: TColumn["sqlType"]
 	} &
 	(TColumn["primary"] extends true
 		? {
-				[K in SafeExtract<keyof EntitySchemaColumnOptions, "primary">]: TColumn["primary"];
+				[K in SafeExtract<keyof EntitySchemaColumnOptions, "primary">]: TColumn["primary"]
 		  }
 		: {}) &
 	(TColumn["primary"] extends true
@@ -20,7 +20,7 @@ export type ColumnOptions<TColumn extends Column<any>> = {
 					[K in SafeExtract<
 						keyof EntitySchemaColumnOptions,
 						"generated"
-					>]: EntitySchemaColumnOptions["generated"];
+					>]: EntitySchemaColumnOptions["generated"]
 			  }
 			: {}
 		: {}) &
@@ -28,6 +28,6 @@ export type ColumnOptions<TColumn extends Column<any>> = {
 		? {}
 		: TColumn["nullable"] extends true
 		? {
-				[K in SafeExtract<keyof EntitySchemaColumnOptions, "nullable">]: TColumn["nullable"];
+				[K in SafeExtract<keyof EntitySchemaColumnOptions, "nullable">]: TColumn["nullable"]
 		  }
-		: {});
+		: {})

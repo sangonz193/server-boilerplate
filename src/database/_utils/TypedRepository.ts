@@ -1,5 +1,5 @@
-import { Repository } from "typeorm";
+import { Repository } from "typeorm"
 
-import { EntityRow, TypedEntitySchema } from "./createTypedEntitySchema";
+import { EntityRow, TypedEntitySchema } from "./createTypedEntitySchema"
 
-export type TypedRepository<T extends TypedEntitySchema> = Repository<EntityRow<T>>;
+export type TypedRepository<T extends TypedEntitySchema> = Repository<EntityRow<T>>

@@ -6,14 +6,14 @@
 export type OptionalUndefinedKeys<T> = Pick<
 	T,
 	{
-		[K in keyof T]: undefined extends T[K] ? never : K;
+		[K in keyof T]: undefined extends T[K] ? never : K
 	}[keyof T]
 > &
 	Partial<
 		Pick<
 			T,
 			{
-				[K in keyof T]: undefined extends T[K] ? K : never;
+				[K in keyof T]: undefined extends T[K] ? K : never
 			}[keyof T]
 		>
-	>;
+	>

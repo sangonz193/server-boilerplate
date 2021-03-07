@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from "yup"
 
 const validatedEnv = yup
 	.object({
@@ -10,11 +10,11 @@ const validatedEnv = yup
 	.required()
 	.validateSync(process.env, {
 		stripUnknown: true,
-	});
+	})
 
 export const keycloakConfig = {
 	port: validatedEnv.KEYCLOAK_PORT,
 	username: validatedEnv.KEYCLOAK_USER,
 	password: validatedEnv.KEYCLOAK_PASSWORD,
 	realm: validatedEnv.KEYCLOAK_REALM,
-};
+}

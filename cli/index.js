@@ -1,2 +1,2 @@
-require("./_utils/registerBabel");
-require("./_index");
+require("./_utils/registerBabel")
+require("./_index")

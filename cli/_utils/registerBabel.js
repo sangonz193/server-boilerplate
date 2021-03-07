@@ -10,4 +10,4 @@ require("@babel/register")({
 	],
 	plugins: ["@babel/plugin-transform-runtime"],
 	extensions: [".js", ".ts"],
-});
+})

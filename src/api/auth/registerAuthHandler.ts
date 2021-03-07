@@ -1,7 +1,7 @@
-import express from "express";
-import { createProxyMiddleware } from "http-proxy-middleware";
+import express from "express"
+import { createProxyMiddleware } from "http-proxy-middleware"
 
-import { keycloakConfig } from "./keycloak.config";
+import { keycloakConfig } from "./keycloak.config"
 
 export const registerAuthHandler = (expressApp: express.Application) => {
 	expressApp.use(
@@ -10,5 +10,5 @@ export const registerAuthHandler = (expressApp: express.Application) => {
 			target: `http://localhost:${keycloakConfig.port}`,
 			prependPath: false,
 		})
-	);
-};
+	)
+}

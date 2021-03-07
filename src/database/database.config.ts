@@ -1,10 +1,10 @@
-import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
-import * as yup from "yup";
+import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions"
+import * as yup from "yup"
 
-import { SafeOmit } from "../_utils/SafeOmit";
-import { validateEnv } from "../_utils/validateEnv";
-import { isProduction } from "../config/isProduction.config";
-import { entities } from "./entities";
+import { SafeOmit } from "../_utils/SafeOmit"
+import { validateEnv } from "../_utils/validateEnv"
+import { isProduction } from "../config/isProduction.config"
+import { entities } from "./entities"
 
 const validatedEnv = validateEnv({
 	DB_NAME: yup.string().trim().required(),
@@ -12,13 +12,13 @@ const validatedEnv = validateEnv({
 	DB_PORT: yup.number().integer().required(),
 	DB_USERNAME: yup.string().trim().required(),
 	DB_PASSWORD: yup.string().trim().required(),
-});
+})
 
 export const databaseConfig: {
 	typeormConfig: SafeOmit<PostgresConnectionOptions, "password" | "schema"> & {
-		password: string;
-		schema: string;
-	};
+		password: string
+		schema: string
+	}
 } = {
 	typeormConfig: {
 		type: "postgres",
@@ -35,4 +35,4 @@ export const databaseConfig: {
 			migrationsDir: "src/database/migrations",
 		},
 	},
-};
+}

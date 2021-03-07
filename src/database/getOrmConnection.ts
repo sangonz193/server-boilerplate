@@ -1,29 +1,29 @@
-import { Connection, createConnection } from "typeorm";
+import { Connection, createConnection } from "typeorm"
 
-import { databaseConfig } from "./database.config";
+import { databaseConfig } from "./database.config"
 
 export const getOrmConnection = async (): Promise<Connection> => {
-	const maxRetries = 5;
-	let tries = 0;
-	let connection: Connection | undefined = undefined;
+	const maxRetries = 5
+	let tries = 0
+	let connection: Connection | undefined = undefined
 
 	while (!connection && tries < maxRetries) {
-		tries++;
-		connection = await createConnection(databaseConfig.typeormConfig).catch(() => undefined);
+		tries++
+		connection = await createConnection(databaseConfig.typeormConfig).catch(() => undefined)
 	}
 
 	if (!connection) {
-		throw new Error(`Could not connect to the database after ${maxRetries} attempts`);
+		throw new Error(`Could not connect to the database after ${maxRetries} attempts`)
 	}
 
-	const { schema } = databaseConfig.typeormConfig;
+	const { schema } = databaseConfig.typeormConfig
 	const schemaExists =
 		(await connection.query(`SELECT schema_name FROM information_schema.schemata WHERE schema_name = '${schema}';`))
-			.length > 0;
+			.length > 0
 
 	if (!schemaExists) {
-		await connection.query(`CREATE SCHEMA ${schema}`);
+		await connection.query(`CREATE SCHEMA ${schema}`)
 	}
 
-	return connection;
-};
+	return connection
+}
