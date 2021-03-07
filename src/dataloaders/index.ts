@@ -1,4 +1,4 @@
-import { Repositories } from "../repositories";
+import { Repositories } from "../database/repositories";
 import { getUserDataLoader, UserDataLoader } from "./User.dataLoader";
 
 export type DataLoaders = {

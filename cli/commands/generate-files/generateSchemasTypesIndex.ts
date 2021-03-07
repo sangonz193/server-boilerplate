@@ -14,14 +14,15 @@ import { generatedFilesGlobs } from "./generatedFilesGlobs";
 
 export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 	const typesFilePath = generatedFilesGlobs.schemasTypeIndex;
-	const parentFilesGlob = path.resolve(projectPath, "src", "resolvers", "**", "*.parent.ts");
+	const parentFilesGlob = path.resolve(projectPath, "src", "api", "graphql", "**", "*.parent.ts");
+	const contextFilePath = path.resolve(projectPath, "src", "api", "graphql", "Context.ts");
 
 	const stringSchema = printSchema(schema);
 	const parentFilesPaths = (await getMatchingFilePaths(parentFilesGlob)).sort();
 
 	const parentFilesMetadata = parentFilesPaths.map((parentFilePath) => {
 		return {
-			importPath: path.relative(path.resolve(typesFilePath, ".."), parentFilePath.replace(/\.[^.]+$/, "")),
+			importPath: getImportPath(typesFilePath, parentFilePath),
 			symbolName: path.basename(parentFilePath).replace(".parent.ts", "") + "Parent",
 		};
 	});
@@ -50,7 +51,7 @@ export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 					},
 					{
 						typescriptResolvers: {
-							contextType: "../Context#Context",
+							contextType: getImportPath(typesFilePath, contextFilePath) + "#Context",
 							avoidOptionals: true,
 							mappers: {
 								...parentFilesMetadata.reduce(

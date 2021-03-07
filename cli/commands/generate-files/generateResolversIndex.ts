@@ -10,7 +10,6 @@ import path from "path";
 
 import { fs } from "../../../src/_utils/fs";
 import { fsExists } from "../../_utils/fsExists";
-import { projectPath } from "../../_utils/projectPath";
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
 import { getFormattedCode } from "./_utils/getFormatCode";
 import { generatedFilesGlobs } from "./generatedFilesGlobs";
@@ -50,7 +49,7 @@ type UnionResolverMetadata = {
 export const generateResolversIndex = async (schema: GraphQLSchema) => {
 	const resolversFolderPath = path.resolve(generatedFilesGlobs.resolversIndex, "..");
 	const resolversFilePath = generatedFilesGlobs.resolversIndex;
-	const generatedTypesFilePath = path.resolve(projectPath, "src", "schemas", "index.types.ts");
+	const generatedTypesFilePath = generatedFilesGlobs.schemasTypeIndex;
 
 	const typeMap = schema.getTypeMap();
 
