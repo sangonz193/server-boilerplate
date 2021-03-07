@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { validateEnv } from "../_utils/validateEnv";
+import { validateEnv } from "../../_utils/validateEnv";
 
 const validatedEnv = validateEnv({
 	KEYCLOAK_PORT: yup.number().required().integer(),

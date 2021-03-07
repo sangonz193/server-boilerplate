@@ -114,6 +114,6 @@ docker/db-data
 # 
 # Auto-generated files
 # 
-src/graphql/schemas.ts
-src/graphql/schemas.types.ts
-src/graphql/resolvers.ts
+src/api/graphql/schemas.ts
+src/api/graphql/schemas.types.ts
+src/api/graphql/resolvers.ts

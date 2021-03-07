@@ -7,7 +7,7 @@ import "./_utils/configEnv";
 import cors from "cors";
 import express from "express";
 
-import { registerAuthHandler } from "./auth/registerAuthHandler";
+import { registerAuthHandler } from "./api/auth/registerAuthHandler";
 import { appConfig } from "./config/app.config";
 import { getOrmConnection } from "./database/getOrmConnection";
 import { getRepositories } from "./database/repositories";
