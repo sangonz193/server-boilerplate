@@ -15,6 +15,7 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 import { createConnection } from "typeorm";
 
 import { appConfig } from "./appConfig";
+import { keycloakConfig } from "./config/keycloak.config";
 import { Context } from "./Context";
 import { getDataLoaders } from "./dataloaders";
 import { getKeycloakClient } from "./getKeycloakClient";
@@ -46,7 +47,7 @@ import { typeDefs } from "./schemas";
 	expressApp.use(
 		"/auth",
 		createProxyMiddleware({
-			target: `http://localhost:${appConfig.keycloak.port}`,
+			target: `http://localhost:${keycloakConfig.port}`,
 			prependPath: false,
 		})
 	);

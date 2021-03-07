@@ -13,10 +13,6 @@ const validatedEnv = yup
 		HOST: yup.string().default("localhost").required(),
 		PORT: yup.number().required().integer(),
 		DB_PORT: yup.number().required().integer(),
-		KEYCLOAK_PORT: yup.number().required().integer(),
-		KEYCLOAK_USER: yup.string().required().min(1),
-		KEYCLOAK_PASSWORD: yup.string().required().min(1),
-		KEYCLOAK_REALM: yup.string().required().min(1),
 	})
 	.required()
 	.validateSync(process.env, {
@@ -29,10 +25,4 @@ export const appConfig = {
 	...validatedEnv,
 
 	LOGGER_PATH: path.resolve(__dirname, "logs"),
-	keycloak: {
-		port: validatedEnv.KEYCLOAK_PORT,
-		username: validatedEnv.KEYCLOAK_USER,
-		password: validatedEnv.KEYCLOAK_PASSWORD,
-		realm: validatedEnv.KEYCLOAK_REALM,
-	},
 };
