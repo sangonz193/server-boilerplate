@@ -4,10 +4,12 @@
 	"description": "Server boilerplate project with Typescript, Apollo Server and PostgreSQL.",
 	"scripts": {
 		"dev": "node cli dev",
+		"start": "node cli start",
 		"generate-files": "node cli generate-files",
 		"tsc": "npx tsc",
 		"lint:fix": "eslint . --fix",
 		"build": "node cli build",
+		"docker-compose": "docker-compose up -d",
 		"postinstall": "patch-package"
 	},
 	"repository": {
@@ -72,7 +74,9 @@
 		"express": "^4.17.1",
 		"glob": "^7.1.6",
 		"graphql": "^15.5.0",
+		"http-proxy-middleware": "^1.0.6",
 		"jsonwebtoken": "^8.5.1",
+		"keycloak-admin": "^1.14.10",
 		"lodash": "^4.17.21",
 		"moment": "^2.29.1",
 		"moment-timezone": "^0.5.33",

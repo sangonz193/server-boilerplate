@@ -108,3 +108,5 @@ dist
 # IDEs
 .vscode
 
+# Docker database
+docker/db-data

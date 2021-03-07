@@ -11,17 +11,22 @@ import { ExpressContext } from "apollo-server-express/dist/ApolloServer";
 import cors from "cors";
 import express from "express";
 import { GraphQLFormattedError } from "graphql";
+import { createProxyMiddleware } from "http-proxy-middleware";
 import { createConnection } from "typeorm";
 
 import { appConfig } from "./appConfig";
+import { keycloakConfig } from "./config/keycloak.config";
 import { Context } from "./Context";
 import { getDataLoaders } from "./dataloaders";
+import { getKeycloakClient } from "./getKeycloakClient";
 import { getRepositories } from "./repositories";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schemas";
 
 (async () => {
 	const connection = await createConnection(appConfig.dbConnectionOptions);
+
+	const keycloakAdminClient = await getKeycloakClient();
 
 	const { schema } = appConfig.dbConnectionOptions;
 	const schemaExists =
@@ -39,6 +44,14 @@ import { typeDefs } from "./schemas";
 	const corsMiddleware = cors();
 	expressApp.use((...args) => corsMiddleware(...args));
 
+	expressApp.use(
+		"/auth",
+		createProxyMiddleware({
+			target: `http://localhost:${keycloakConfig.port}`,
+			prependPath: false,
+		})
+	);
+
 	const repositories = getRepositories(connection);
 
 	const context: ContextFunction<ExpressContext, Context> = async ({ req, res }) => {
@@ -48,6 +61,7 @@ import { typeDefs } from "./schemas";
 			res,
 			dataLoaders: getDataLoaders(repositories),
 			repositories,
+			keycloak: keycloakAdminClient,
 		};
 	};
 

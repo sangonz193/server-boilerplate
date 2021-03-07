@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import KeycloakAdminClient from "keycloak-admin";
 import { Connection } from "typeorm";
 
 import { DataLoaders } from "./dataloaders";
@@ -14,4 +15,5 @@ export type Context = {
 
 	dataLoaders: DataLoaders;
 	repositories: Repositories;
+	keycloak: KeycloakAdminClient;
 };

@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:13.2
+    environment:
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_DB: "${DB_NAME}"
+    volumes:
+      - ./docker/db-data:/var/lib/postgresql/data
+      - ./docker/init-postgres.sql:/docker-entrypoint-initdb.d/init-postgres.sql
+    networks:
+      - server
+    ports:
+      - "${DB_PORT}:5432"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:12.0.4
+    environment:
+      KEYCLOAK_USER: "${KEYCLOAK_USER}"
+      KEYCLOAK_PASSWORD: "${KEYCLOAK_PASSWORD}"
+      DB_VENDOR: postgres
+      DB_ADDR: db
+      DB_USER: "${DB_USERNAME}"
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_PASSWORD: "${DB_PASSWORD}"
+    networks:
+      - server
+    depends_on: 
+      - db
+    ports:
+      - "${KEYCLOAK_PORT}:8080"
+    restart: unless-stopped
+
+networks: 
+  server:
+    name: server
