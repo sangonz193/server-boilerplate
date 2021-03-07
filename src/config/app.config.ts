@@ -8,5 +8,6 @@ const validatedEnv = validateEnv({
 });
 
 export const appConfig = {
-	...validatedEnv,
+	host: validatedEnv.HOST,
+	port: validatedEnv.PORT,
 };

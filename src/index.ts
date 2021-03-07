@@ -37,11 +37,11 @@ import { getKeycloakClient } from "./getKeycloakClient";
 
 	const server = expressApp.listen(
 		{
-			port: appConfig.PORT,
-			host: appConfig.HOST,
+			port: appConfig.port,
+			host: appConfig.host,
 		},
 		async () => {
-			console.log(`Listening on port ${appConfig.PORT} with cors enabled`);
+			console.log(`Listening on port ${appConfig.port} with cors enabled`);
 		}
 	);
 
