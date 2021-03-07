@@ -13,7 +13,8 @@ import { appConfig } from "./config/app.config"
 import { getOrmConnection } from "./database/getOrmConnection"
 import { getRepositories } from "./database/repositories"
 import { getKeycloakClient } from "./getKeycloakClient"
-;(async () => {
+
+const run = async () => {
 	const [ormConnection, keycloakAdminClient] = await Promise.all([
 		getOrmConnection().then(async (connection) => {
 			await connection.runMigrations()
@@ -49,7 +50,9 @@ import { getKeycloakClient } from "./getKeycloakClient"
 
 		process.exit(1)
 	})
-})().catch((error) => {
+}
+
+run().catch((error) => {
 	console.error(error)
 
 	process.exit(1)
