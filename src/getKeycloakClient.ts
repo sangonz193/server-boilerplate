@@ -1,6 +1,6 @@
 import KeycloakAdminClient from "keycloak-admin";
 
-import { keycloakConfig } from "./auth/keycloak.config";
+import { keycloakConfig } from "./config/keycloak.config";
 
 export const getKeycloakClient = async (): Promise<KeycloakAdminClient> => {
 	const baseUrl = `http://localhost:${keycloakConfig.port}/auth`;
