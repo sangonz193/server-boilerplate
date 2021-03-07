@@ -2,15 +2,16 @@ import csvStringify from "csv-stringify";
 import path from "path";
 import { Pool } from "pg";
 import { from as copyFrom } from "pg-copy-streams";
-import { createConnection, getRepository } from "typeorm";
+import { getRepository } from "typeorm";
 import { CommandModule } from "yargs";
 
 import { dangerousKeysOf } from "../../../src/_utils/dangerousKeysOf";
 import { _fs, fs } from "../../../src/_utils/fs";
 import { hashPassword } from "../../../src/_utils/hashPassword";
-import { getDbConnectionOptions } from "../../../src/config/getDbConnectionOptions";
-import { entities } from "../../../src/entities";
-import { getUserRepository } from "../../../src/repositories/User";
+import { databaseConfig } from "../../../src/database/database.config";
+import { entities } from "../../../src/database/entities";
+import { getOrmConnection } from "../../../src/database/getOrmConnection";
+import { getUserRepository } from "../../../src/database/User";
 import { fsExists } from "../../_utils/fsExists";
 import { valueToCSV } from "./valueToCSV";
 
@@ -22,9 +23,8 @@ const command: CommandModule<{}, {}> = {
 		"Should only be called once. Deletes any current data!",
 
 	handler: async () => {
-		const dbConnectionOptions = getDbConnectionOptions();
-		const connection = await createConnection(dbConnectionOptions);
-		const { schema } = dbConnectionOptions;
+		const connection = await getOrmConnection();
+		const { schema } = databaseConfig.typeormConfig;
 
 		await connection.query(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
 		await connection.query(`CREATE SCHEMA "${schema}"`);
@@ -80,11 +80,11 @@ const command: CommandModule<{}, {}> = {
 				const fileStream = _fs.createReadStream(filePath);
 
 				const pool = new Pool({
-					database: dbConnectionOptions.database,
-					password: dbConnectionOptions.password,
-					port: dbConnectionOptions.port,
-					user: dbConnectionOptions.username,
-					host: dbConnectionOptions.host,
+					database: databaseConfig.typeormConfig.database,
+					password: databaseConfig.typeormConfig.password,
+					port: databaseConfig.typeormConfig.port,
+					user: databaseConfig.typeormConfig.username,
+					host: databaseConfig.typeormConfig.host,
 				});
 
 				const repository = getRepository(entityToCopy);

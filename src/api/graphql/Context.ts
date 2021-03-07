@@ -2,15 +2,13 @@ import { Request, Response } from "express";
 import KeycloakAdminClient from "keycloak-admin";
 import { Connection } from "typeorm";
 
-import { DataLoaders } from "./dataloaders";
-import { UserRow } from "./entities/User/User.entity.types";
-import { Repositories } from "./repositories";
+import { Repositories } from "../../database/repositories";
+import { DataLoaders } from "../../dataloaders";
 
 export type Context = {
 	ormConnection: Connection;
 	req: Request;
 	res: Response;
-	currentUser?: UserRow;
 	includeHidden?: boolean;
 
 	dataLoaders: DataLoaders;

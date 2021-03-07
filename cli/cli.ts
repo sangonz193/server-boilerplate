@@ -7,7 +7,8 @@ import { fs } from "../src/_utils/fs";
 	const commands: Array<CommandModule<unknown, unknown>> = [];
 
 	const commandsDirPath = path.resolve(__dirname, "commands");
-	const commandsDirItems = await fs.readdir(commandsDirPath);
+	const commandsDirItems =
+		process.argv[2] === "generate-files" ? ["generate-files"] : await fs.readdir(commandsDirPath);
 	await Promise.all(
 		commandsDirItems.map(async (commandsDirItem) => {
 			const commandsDirItemPath = path.resolve(commandsDirPath, commandsDirItem);

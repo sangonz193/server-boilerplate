@@ -1,4 +1,4 @@
-import { GenericError } from "../../schemas/index.types";
+import { GenericError } from "../schemas.types";
 
 export type GenericErrorParent = GenericError;
 

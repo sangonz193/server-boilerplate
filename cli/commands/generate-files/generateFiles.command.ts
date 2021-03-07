@@ -51,7 +51,7 @@ const command: CommandModule<{}, { watch: boolean; skipInitial: boolean }> = {
 				}
 			);
 		} else {
-			const schemaFilesGlob = path.resolve(projectPath, "src", "schemas", "**", "*.schema.ts");
+			const schemaFilesGlob = path.resolve(projectPath, "src", "api", "graphql", "**", "*.schema.ts");
 			const loadSchemaPromise = loadSchema(schemaFilesGlob, { loaders: [new CodeFileLoader()] });
 
 			await Promise.all([

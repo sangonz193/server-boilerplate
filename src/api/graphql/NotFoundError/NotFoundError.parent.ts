@@ -1,4 +1,4 @@
-import { NotFoundError } from "../../schemas/index.types";
+import { NotFoundError } from "../schemas.types";
 
 export type NotFoundErrorParent = NotFoundError;
 
