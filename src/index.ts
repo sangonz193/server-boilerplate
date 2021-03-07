@@ -8,11 +8,11 @@ import cors from "cors";
 import express from "express";
 
 import { registerAuthHandler } from "./api/auth/registerAuthHandler";
+import { registerApolloServer } from "./api/graphql/registerApolloServer";
 import { appConfig } from "./config/app.config";
 import { getOrmConnection } from "./database/getOrmConnection";
 import { getRepositories } from "./database/repositories";
 import { getKeycloakClient } from "./getKeycloakClient";
-import { registerApolloServer } from "./graphql/registerApolloServer";
 
 (async () => {
 	const [ormConnection, keycloakAdminClient] = await Promise.all([

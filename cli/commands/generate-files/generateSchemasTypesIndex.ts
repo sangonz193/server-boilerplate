@@ -14,7 +14,7 @@ import { generatedFilesGlobs } from "./generatedFilesGlobs";
 
 export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 	const typesFilePath = generatedFilesGlobs.schemasTypeIndex;
-	const parentFilesGlob = path.resolve(projectPath, "src", "graphql", "**", "*.parent.ts");
+	const parentFilesGlob = path.resolve(projectPath, "src", "api", "graphql", "**", "*.parent.ts");
 
 	const stringSchema = printSchema(schema);
 	const parentFilesPaths = (await getMatchingFilePaths(parentFilesGlob)).sort();
