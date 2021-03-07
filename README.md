@@ -29,7 +29,7 @@ In order to populate the database with some dummy values, run the command `node 
 
 ## Included command line utility
 
-Apart from the app itself, this project contains a cli utility that you may find useful while developing. To invoke it, you will run `node cli [command]` at the root of the project. For information about it, you can run `node cli --help` which will list all available commands. For more information about a specific command, you may run `node cli [command] --help` where _[command]_ is the name of a command from the previous list.
+Apart from the app itself, this project contains a cli utility that you may find useful while developing. To invoke it, you will run `node cli <command>` at the root of the project. For information about it, you can run `node cli --help` which will list all available commands. For more information about a specific command, you may run `node cli <command> --help` where _[command]_ is the name of a command from the previous list.
 
 ## License
 
