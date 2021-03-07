@@ -41,7 +41,7 @@ import { getKeycloakClient } from "./getKeycloakClient";
 			host: appConfig.host,
 		},
 		async () => {
-			console.log(`Listening on port ${appConfig.port} with cors enabled`);
+			console.log(`Listening on port ${appConfig.port.toString()} with cors enabled`);
 		}
 	);
 
