@@ -6,7 +6,8 @@ import semver from "semver"
 import { fs } from "../src/_utils/fs"
 import { fsExists } from "./_utils/fsExists"
 import { projectPath } from "./_utils/projectPath"
-;(async () => {
+
+const run = async () => {
 	const expectedNodeVersion = await fs.readFile(path.resolve(projectPath, ".nvmrc"), "utf-8")
 
 	if (!semver.satisfies(process.version, expectedNodeVersion)) {
@@ -26,4 +27,6 @@ import { projectPath } from "./_utils/projectPath"
 	}
 
 	require("./cli")
-})()
+}
+
+run()
