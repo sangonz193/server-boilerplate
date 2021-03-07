@@ -20,8 +20,8 @@
 
 Before running the code itself, the database and Keycloak must be up and running. To do that, run `npm run docker-compose`.
 
-After that, run the command `npm run dev` (or `node cli dev`) to run the server. Depending on the value of the `PORT` environment variable in the `.env` file, the server will be listening at _http<span></span>://localhost:$PORT`_.
-The GraphQL playground is accessible from the _http<span></span>://localhost:$PORT/graphql_.
+After that, run the command `npm run dev` (or `node cli dev`) to run the server. Depending on the value of the `PORT` environment variable in the `.env` file, the server will be listening at _http<span></span>://localhost:\$PORT_.
+The GraphQL playground is accessible from the _http<span></span>://localhost:\$PORT/graphql_.
 
 ### Database seeds
 
