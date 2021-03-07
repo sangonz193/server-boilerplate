@@ -3,15 +3,15 @@
  * next time the file gets generated.
  */
 
-import { Connection } from "typeorm";
+import { Connection } from "typeorm"
 
-import { getUserRepository } from "./User/User.repository";
-import { UserRepository } from "./User/User.repository.types";
+import { getUserRepository } from "./User/User.repository"
+import { UserRepository } from "./User/User.repository.types"
 
 export type Repositories = {
-	user: UserRepository;
-};
+	user: UserRepository
+}
 
 export const getRepositories = (connection: Connection): Repositories => ({
 	user: getUserRepository(connection),
-});
+})

@@ -1,9 +1,9 @@
-import identity from "lodash/identity";
-import path from "path";
-import { spawn } from "promisify-child-process";
-import { CommandModule } from "yargs";
+import identity from "lodash/identity"
+import path from "path"
+import { spawn } from "promisify-child-process"
+import { CommandModule } from "yargs"
 
-import { projectPath } from "../../_utils/projectPath";
+import { projectPath } from "../../_utils/projectPath"
 
 const command: CommandModule<{}, { watch: boolean }> = {
 	command: "start",
@@ -18,10 +18,10 @@ const command: CommandModule<{}, { watch: boolean }> = {
 		}),
 
 	handler: async (args) => {
-		const scriptPath = path.resolve(projectPath, "src");
+		const scriptPath = path.resolve(projectPath, "src")
 
 		if (!args.watch) {
-			require(path.resolve(projectPath, "src"));
+			require(path.resolve(projectPath, "src"))
 		} else {
 			spawn(
 				"npx",
@@ -41,9 +41,9 @@ const command: CommandModule<{}, { watch: boolean }> = {
 					cwd: projectPath,
 					stdio: "inherit",
 				}
-			);
+			)
 		}
 	},
-};
+}
 
-export default command;
+export default command

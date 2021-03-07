@@ -1,7 +1,7 @@
-import { GraphQLScalarType } from "graphql";
+import { GraphQLScalarType } from "graphql"
 
-import { Resolvers } from "./schemas.types";
+import { Resolvers } from "./schemas.types"
 
-const resolver: Resolvers["Void"] = new GraphQLScalarType({ name: "Void" });
+const resolver: Resolvers["Void"] = new GraphQLScalarType({ name: "Void" })
 
-export default resolver;
+export default resolver

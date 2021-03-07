@@ -1,8 +1,8 @@
-import path from "path";
-import { spawn } from "promisify-child-process";
-import { CommandModule } from "yargs";
+import path from "path"
+import { spawn } from "promisify-child-process"
+import { CommandModule } from "yargs"
 
-import { projectPath } from "../../_utils/projectPath";
+import { projectPath } from "../../_utils/projectPath"
 
 const command: CommandModule<{}, { name: string }> = {
 	command: "generate-migration <name>",
@@ -28,8 +28,8 @@ const command: CommandModule<{}, { name: string }> = {
 				stdio: "inherit",
 				cwd: projectPath,
 			}
-		);
+		)
 	},
-};
+}
 
-export default command;
+export default command

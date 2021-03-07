@@ -1,7 +1,7 @@
-import { spawn } from "promisify-child-process";
-import { CommandModule } from "yargs";
+import { spawn } from "promisify-child-process"
+import { CommandModule } from "yargs"
 
-import { projectPath } from "../../_utils/projectPath";
+import { projectPath } from "../../_utils/projectPath"
 
 const command: CommandModule<{}, {}> = {
 	command: "dev",
@@ -10,15 +10,15 @@ const command: CommandModule<{}, {}> = {
 		"Starts the server in development mode, listens for changes to reload and runs `generate-files` in watch mode.",
 
 	handler: async () => {
-		await spawn("node", ["cli", "generate-files"], { cwd: projectPath });
+		await spawn("node", ["cli", "generate-files"], { cwd: projectPath })
 
 		const generateFilesSpawn = spawn("node", ["cli", "generate-files", "-w", "--skipInitial"], {
 			cwd: projectPath,
-		});
-		generateFilesSpawn.stdout?.pipe(process.stdout);
+		})
+		generateFilesSpawn.stdout?.pipe(process.stdout)
 
-		spawn("node", ["cli", "start", "-w"], { cwd: projectPath, stdio: "inherit" });
+		spawn("node", ["cli", "start", "-w"], { cwd: projectPath, stdio: "inherit" })
 	},
-};
+}
 
-export default command;
+export default command

@@ -31,4 +31,4 @@ module.exports = {
 		"simple-import-sort/imports": "warn",
 		curly: ["warn", "all"],
 	},
-};
+}

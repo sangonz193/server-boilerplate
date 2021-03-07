@@ -1,8 +1,8 @@
-import path from "path";
-import { spawn } from "promisify-child-process";
-import { CommandModule } from "yargs";
+import path from "path"
+import { spawn } from "promisify-child-process"
+import { CommandModule } from "yargs"
 
-import { projectPath } from "../../_utils/projectPath";
+import { projectPath } from "../../_utils/projectPath"
 
 const command: CommandModule<{}, {}> = {
 	command: "typeorm",
@@ -12,10 +12,10 @@ const command: CommandModule<{}, {}> = {
 	builder: (yargs) => yargs.strict(false),
 
 	handler: async () => {
-		const argsIndex = process.argv.indexOf("--");
+		const argsIndex = process.argv.indexOf("--")
 
 		if (argsIndex === -1) {
-			throw new Error("Must specify typeorm arguments after `--`");
+			throw new Error("Must specify typeorm arguments after `--`")
 		}
 
 		await spawn(
@@ -29,8 +29,8 @@ const command: CommandModule<{}, {}> = {
 				stdio: "inherit",
 				cwd: projectPath,
 			}
-		);
+		)
 	},
-};
+}
 
-export default command;
+export default command

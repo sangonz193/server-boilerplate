@@ -1,44 +1,44 @@
-import { executeCodegen } from "@graphql-codegen/cli";
-import * as typescriptPlugin from "@graphql-codegen/typescript";
-import * as typescriptResolversPlugin from "@graphql-codegen/typescript-resolvers";
-import { GraphQLSchema, printSchema } from "graphql";
-import path from "path";
+import { executeCodegen } from "@graphql-codegen/cli"
+import * as typescriptPlugin from "@graphql-codegen/typescript"
+import * as typescriptResolversPlugin from "@graphql-codegen/typescript-resolvers"
+import { GraphQLSchema, printSchema } from "graphql"
+import path from "path"
 
-import { fs } from "../../../src/_utils/fs";
-import { projectPath } from "../../_utils/projectPath";
-import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
-import { getFormattedCode } from "./_utils/getFormatCode";
-import { getImportPath } from "./_utils/getImportPath";
-import { getMatchingFilePaths } from "./_utils/getMatchingFilePaths";
-import { generatedFilesGlobs } from "./generatedFilesGlobs";
+import { fs } from "../../../src/_utils/fs"
+import { projectPath } from "../../_utils/projectPath"
+import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"
+import { getFormattedCode } from "./_utils/getFormatCode"
+import { getImportPath } from "./_utils/getImportPath"
+import { getMatchingFilePaths } from "./_utils/getMatchingFilePaths"
+import { generatedFilesGlobs } from "./generatedFilesGlobs"
 
 export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
-	const typesFilePath = generatedFilesGlobs.schemasTypeIndex;
-	const parentFilesGlob = path.resolve(projectPath, "src", "api", "graphql", "**", "*.parent.ts");
-	const contextFilePath = path.resolve(projectPath, "src", "api", "graphql", "Context.ts");
+	const typesFilePath = generatedFilesGlobs.schemasTypeIndex
+	const parentFilesGlob = path.resolve(projectPath, "src", "api", "graphql", "**", "*.parent.ts")
+	const contextFilePath = path.resolve(projectPath, "src", "api", "graphql", "Context.ts")
 
-	const stringSchema = printSchema(schema);
-	const parentFilesPaths = (await getMatchingFilePaths(parentFilesGlob)).sort();
+	const stringSchema = printSchema(schema)
+	const parentFilesPaths = (await getMatchingFilePaths(parentFilesGlob)).sort()
 
 	const parentFilesMetadata = parentFilesPaths.map((parentFilePath) => {
 		return {
 			importPath: getImportPath(typesFilePath, parentFilePath),
 			symbolName: path.basename(parentFilePath).replace(".parent.ts", "") + "Parent",
-		};
-	});
+		}
+	})
 
 	const codegenResult = await executeCodegen({
 		silent: true,
 		schema: stringSchema,
 		pluginLoader: (name) => {
 			if (name.endsWith("typescript")) {
-				return typescriptPlugin;
+				return typescriptPlugin
 			}
 			if (name.endsWith("typescriptResolvers")) {
-				return typescriptResolversPlugin;
+				return typescriptResolversPlugin
 			}
 
-			throw new Error(name + " not found");
+			throw new Error(name + " not found")
 		},
 		generates: {
 			[typesFilePath]: {
@@ -70,7 +70,7 @@ export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 				],
 			},
 		},
-	});
+	})
 
 	await Promise.all(
 		codegenResult.map(async (result) => {
@@ -114,7 +114,7 @@ export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 						"\n\n" +
 						`export type Resolvers = SafeOmit<_Resolvers, keyof CustomResolvers> & CustomResolvers;\n`
 				)
-			);
+			)
 		})
-	);
-};
+	)
+}

@@ -1,4 +1,4 @@
-require("dotenv").config();
-require("./cli/_utils/registerBabel");
+require("dotenv").config()
+require("./cli/_utils/registerBabel")
 
-module.exports = require("./src/database/database.config").databaseConfig.typeormConfig;
+module.exports = require("./src/database/database.config").databaseConfig.typeormConfig

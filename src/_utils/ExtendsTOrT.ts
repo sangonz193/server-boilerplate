@@ -1,1 +1,1 @@
-export type ExtendsTOrT<T, U> = U extends T ? U : T;
+export type ExtendsTOrT<T, U> = U extends T ? U : T

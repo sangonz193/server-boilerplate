@@ -29,4 +29,4 @@ export const commonManagedColumnsOptions = {
 		type: "uuid",
 		nullable: true,
 	},
-} as const;
+} as const
