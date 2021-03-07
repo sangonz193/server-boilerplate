@@ -110,3 +110,10 @@ dist
 
 # Docker database
 docker/db-data
+
+# 
+# Auto-generated files
+# 
+src/graphql/schemas.ts
+src/graphql/schemas.types.ts
+src/graphql/resolvers.ts
