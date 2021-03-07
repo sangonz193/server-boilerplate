@@ -6,9 +6,9 @@ import { GraphQLFormattedError } from "graphql";
 import KeycloakAdminClient from "keycloak-admin";
 import { Connection } from "typeorm";
 
-import { Context } from "../Context";
-import { Repositories } from "../database/repositories";
-import { getDataLoaders } from "../dataloaders";
+import { Repositories } from "../../database/repositories";
+import { getDataLoaders } from "../../dataloaders";
+import { Context } from "./Context";
 import { graphqlConfig } from "./graphql.config";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schemas";

@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import KeycloakAdminClient from "keycloak-admin";
 import { Connection } from "typeorm";
 
-import { Repositories } from "./database/repositories";
-import { DataLoaders } from "./dataloaders";
+import { Repositories } from "../../database/repositories";
+import { DataLoaders } from "../../dataloaders";
 
 export type Context = {
 	ormConnection: Connection;

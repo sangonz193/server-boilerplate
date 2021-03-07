@@ -50,7 +50,11 @@ export const generateSchemasTypesIndex = async (schema: GraphQLSchema) => {
 					},
 					{
 						typescriptResolvers: {
-							contextType: "../Context#Context",
+							contextType:
+								getImportPath(
+									typesFilePath,
+									path.resolve(projectPath, "src", "api", "graphql", "Context.ts")
+								) + "#Context",
 							avoidOptionals: true,
 							mappers: {
 								...parentFilesMetadata.reduce(
